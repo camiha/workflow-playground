@@ -1,0 +1,41 @@
+{
+  "name": "node-package-workflow-testing",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "typings": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "biome lint ./src",
+    "check": "biome check ./src",
+    "test": "biome ci ./src && vitest run",
+    "build": "unbuild",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@biomejs/biome": "^1.4.1",
+    "@types/node": "^20.10.3",
+    "husky": "^8.0.3",
+    "tsx": "^4.6.2",
+    "typescript": "^5.3.2",
+    "unbuild": "^2.0.0",
+    "vitest": "^1.0.1"
+  }
+}
