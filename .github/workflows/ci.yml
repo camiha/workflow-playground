@@ -10,12 +10,19 @@ jobs:
     name: 'CI'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set node version to 20
+        uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-      - uses: actions/setup-node@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - run: pnpm install
-      - run: pnpm test
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+          cache: "pnpm"
+      - name: Install deps
+        run: pnpm install
+      - name: Build
+        run: pnpm build
+      - name: lint
+        run: pnpm check:ci
+      - name: Test
+        run: pnpm coverage

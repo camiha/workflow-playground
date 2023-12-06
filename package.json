@@ -22,7 +22,9 @@
     "coverage": "vitest run --coverage",
     "lint": "biome lint ./src",
     "check": "biome check ./src",
+    "check:ci": "biome ci ./src",
     "test": "biome ci ./src && vitest run",
+    "test:ci": "vitest run",
     "build": "unbuild",
     "prepare": "husky install"
   },
