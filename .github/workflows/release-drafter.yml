@@ -1,0 +1,25 @@
+name: Create Release
+on:
+  workflow_run:
+    workflows:
+      - publish
+    types:
+      - completed
+
+jobs:
+  release:
+    permissions:
+      contents: write
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Release Tag And Note
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.pull_request.title }}
+        uses: release-drafter/release-drafter@v5
+        with:
+          tag: ${{ env.RELEASE_TAG }}
+          name: Release ${{ env.RELEASE_TAG }}
+          version: ${{ env.RELEASE_TAG }}
+          publish: true
